@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 public class MFragment extends Fragment {
     private IPresenter mPresenter;
     private View mRootView;
+    private MTextView mTextView;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -21,6 +22,8 @@ public class MFragment extends Fragment {
             mRootView = inflater.inflate(R.layout.fragment_test,container,false);
             mPresenter = new PresenterImpl("MFragment");
             getLifecycle().addObserver(mPresenter);
+            mTextView = mRootView.findViewById(R.id.textView);
+            mTextView.setLifecycle(getLifecycle());
         }
         return mRootView;
     }
